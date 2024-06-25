@@ -1,5 +1,7 @@
 const { log } = require("console");
 
+const fibNumber = 22; // The iteration of the Fibonacci sequence.
+
 const fibs = (n) => {
   let arr = [];
   let previousprevious = 0;
@@ -24,4 +26,21 @@ const fibs = (n) => {
   return arr;
 };
 
-log(fibs(8));
+const fibsRec = (n, arr = []) => {
+  if (n == 1) {
+    return [0];
+  } else if (n == 2 && arr.length == 0) {
+    return [0, 1];
+  } else if (arr.length == 0) {
+    return fibsRec(n - 1, [0, 1]);
+  } else {
+    arr.push(arr[arr.length - 1] + arr[arr.length - 2])
+    fibsRec(n - 1, arr);
+    return arr
+  }
+
+};
+
+log(`Using Recursion, ${fibsRec(fibNumber)}`);
+
+log(`Using Iteration, ${fibs(fibNumber)}`);
